@@ -9,10 +9,15 @@ import javax.persistence.TemporalType;
 
 @Embeddable
 public class PeopleIdentification extends Identification{
-    
-    
-    private String cpf;
-    
+
+
+    /**
+	 *
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private String cpf;
+
     @Column(name="birth_date")
     @Temporal(TemporalType.DATE)
     private Date birthDate;
@@ -32,6 +37,6 @@ public class PeopleIdentification extends Identification{
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
-    
+
 
 }

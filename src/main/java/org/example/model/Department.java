@@ -11,20 +11,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapKeyJoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.example.model.identification.DepartmentId;
+
 @Entity(name = "department")
+@IdClass(DepartmentId.class)
 public class Department {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int number;
 
     private String name;
 
@@ -39,7 +45,10 @@ public class Department {
     private List<Employee> staff;
 
     @ElementCollection
-    @CollectionTable(name = "department_employee_cubiculo", joinColumns = {@JoinColumn(name = "id_departament") })
+    @CollectionTable(name = "department_employee_cubiculo",
+    	joinColumns = {
+    		@JoinColumn(name = "id_departament", referencedColumnName="id"),
+    		@JoinColumn(name = "number_departament", referencedColumnName="number")})
     @Column(name="cubiculo")
     @MapKeyJoinColumn(name="id_employee")
     private Map<Employee, String> cubiculo;

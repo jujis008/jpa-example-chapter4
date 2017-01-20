@@ -5,18 +5,18 @@ import java.io.Serializable;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class Identification implements Serializable {
+public abstract class Identification implements Serializable {
 
-    private static final long serialVersionUID = -9073170373995511408L;
-    
-    private String name;
+	private static final long serialVersionUID = -9073170373995511408L;
 
-    public String getName() {
-        return name;
-    }
+	private String name;
 
-    public void setName(String name) {
-        this.name = name;
-    }
-    
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 }
